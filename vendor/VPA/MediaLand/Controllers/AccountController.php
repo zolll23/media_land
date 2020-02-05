@@ -21,7 +21,13 @@ class AccountController extends \VPA\Controller
     public function showAccountPage()
     {
 	$user = \VPA\HTTP\Session::get('login');
+	if (empty($user)) {
+	    $this->http->redirectTo('/signin');
+	    return true;
+	}
+
 	$role = 'Anonymous';
+	$tpl = 'account_user.html';
 	switch ($user['role']) {
 	    case 1:
 		$role = 'User';
