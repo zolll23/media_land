@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block title %}Welcome!{% endblock %}
+{% block content %}
+    <div class="text-center mt-5">
+    {% if logged %}
+    <h1>Welcome, {{ user.email}}!</h1>
+    <p class="important">
+        You are logged on site as {{ role }}
+	<h5>Your data from DB:</h5>
+	<table class="table table-striped">
+	{% for k,v in user %}
+	    <tr><td>{{ k }}</td><td> {{ v }}</td></tr>
+	{% endfor %}
+	</table>
+    </p>
+    {% else %}
+    <h1>Welcome, Anonymous!</h1>
+    <p class="important">
+	You are not logged on site.<br>
+	You can <a href="/signin">login</a> or <a href="/signup">register</a>.
+    </p>
+    {% endif %}
+    </div>
+{% endblock %}
