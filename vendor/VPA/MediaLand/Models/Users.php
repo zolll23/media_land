@@ -40,6 +40,9 @@ class Users {
     {
 	unset($fields['action']);
 	unset($fields['password2']);
+	foreach ($fields as $key => $field) {
+		$fields[$key] = $this->db->escape($field);
+	}
 	$query = sprintf("INSERT INTO users(`%s`) VALUE('%s')",implode("`,`",array_keys($fields)),implode("','",$fields));
         return $this->db->query($query);
     }
